@@ -8,12 +8,17 @@ let mainWindow;
 let tray;
 
 app.on('ready', () => {
+  if (process.platform === 'darwin') {
+    app.dock.hide();
+  }
+
   mainWindow = new BrowserWindow({
     height: 500,
     width: 300,
     frame: false,
     resizable: false,
-    show: false
+    show: false,
+    skipTaskbar: process.platform !== 'darwin'
   });
 
   mainWindow.loadURL(`file://${__dirname}/src/index.html`);
