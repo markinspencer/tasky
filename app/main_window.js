@@ -10,7 +10,8 @@ class MainWindow extends BrowserWindow {
             frame: false,
             resizable: false,
             show: false,
-            skipTaskbar: process.platform !== 'darwin'
+            skipTaskbar: process.platform !== 'darwin',
+            webPreferences:  { backgroundThrottling: false }
         });
         this.loadURL(url);
         this.on('blur', this.onBlur.bind(this));
